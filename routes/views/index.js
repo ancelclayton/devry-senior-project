@@ -22,8 +22,11 @@ exports = module.exports = function (req, res) {
 	// Load featured products
 	view.on('init', function (next) {
 		Products.model.find({
-				publish: true
-			}).exec(function (err, results) {
+				publish: true,
+				featureOnHomepage: true
+			})
+			.limit(12)
+			.exec(function (err, results) {
 				locals.data.products = results;				
 				next(err);
 			});
