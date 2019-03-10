@@ -11,8 +11,8 @@ var handlebars = require('express-handlebars');
 // and documentation.
 
 keystone.init({
-	'name': 'devry-senior-project',
-	'brand': 'devry-senior-project',
+	'name': 'Williams Specialty Company ',
+	'brand': 'Williams Specialty Company ',
 
 	'sass': 'public',
 	'static': 'public',
@@ -55,6 +55,7 @@ keystone.set('routes', require('./routes'));
 
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
+	products: ['products', 'product-categories'],
 	enquiries: 'enquiries',
 	users: 'users',
 });

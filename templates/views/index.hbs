@@ -1,21 +1,21 @@
 {{!< default}}
 <div class="container">
-	<div class="jumbotron"><img src="/images/logo.svg" width="160">
-		<h1>Welcome</h1>
-		<p>This is your new <a href='http://keystonejs.com' target='_blank'>KeystoneJS</a> website.</p>
-		<p>
-			It includes the latest versions of
-			<a href='http://getbootstrap.com/' target='_blank'>Bootstrap</a>
-			and <a href='http://www.jquery.com/' target='_blank'>jQuery</a>.
-		</p>
-		<p>Visit the <a href='http://keystonejs.com/guide' target='_blank'>Getting Started</a> guide to learn how to customise it.</p>
-		<hr>
-		<p>We have created a default Admin user for you with the email <strong>ancelclayton@gmail.com</strong> and the password <strong>admin</strong>.</p>
-		<p><a href="/keystone/signin" style="margin-right: 10px" class="btn btn-lg btn-primary">Sign in</a> to use the Admin UI.</p>
-		<hr>
-		<p>
-			Remember to <a href='https://github.com/keystonejs/keystone' target='_blank'>Star KeystoneJS on GitHub</a> and
-			<a href='https://twitter.com/keystonejs' target='_blank'>follow @keystonejs</a> on twitter for updates.
-		</p>
+	<div class="jumbotron">
+		<h1>Welcome Message</h1>
+		<h2>Hero image here!</h2>
+	</div>
+	<div class="row">
+		{{#each data.products}}
+			<div class="col-sm-4">
+				<div class="card" style="width: 18rem;">
+					<img class="card-img-top img-product" src="{{image.secure_url}}" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title"><strong>{{name}}</strong></h5>
+						<p class="card-text">{{{description}}}</p>
+						<a href="#" class="btn btn-primary">Learn more</a>
+					</div>
+				</div>
+			</div>
+		{{/each}}
 	</div>
 </div>
