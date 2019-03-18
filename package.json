@@ -23,7 +23,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "start": "node keystone.js",
+    "start": "nodemon keystone.js",
     "dev": "nodemon keystone.js"
   },
   "main": "keystone.js",
