@@ -13,7 +13,7 @@ var Product = new keystone.List('Product', {
 
 Product.add({
 	name: { type: String, required: true },
-	categories: { type: Types.Relationship, ref: 'ProductCategory', initial: true }
+	categories: { type: Types.Relationship, ref: 'ProductCategory', initial: true, many: false }
 },'Content',{
 	image: { type: Types.CloudinaryImage },
 	description: { type: Types.Html, wysiwyg: true, height: 150 },
