@@ -5,14 +5,14 @@
 		<h2>Hero image here!</h2>
 	</div>
 	<div class="row">
-		{{#each data.products}}
+		{{# each data.products}}
 			<div class="col-sm-4">
 				<div class="card" style="width: 18rem;">
 					<img class="card-img-top img-product" src="{{image.secure_url}}" alt="Card image cap">
 					<div class="card-body">
 						<h5 class="card-title"><strong>{{name}}</strong></h5>
 						<p class="card-text">{{{description}}}</p>
-						<a href="#" class="btn btn-primary">Learn more</a>
+						<a href="{{productUrl key}}" class="btn btn-primary">Learn more</a>
 					</div>
 				</div>
 			</div>
