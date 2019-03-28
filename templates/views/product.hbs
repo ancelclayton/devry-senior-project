@@ -19,9 +19,9 @@
                         <li class="list-group-item"><strong>QTY:</strong>{{data.product.quantity}}</li>
                     </ul>
                     <div class="well">
-                        {{data.product.description}}
+                        {{{data.product.description}}}
+                        <a href="{{purchaseUrl data.product.key}}" class="btn btn-primary">Purchase</a>
                     </div>
-                    <a class="btn btn-success btn-block" href="/contact">Ask About This Product</a>
                 </div>
             </div>
             </hr>

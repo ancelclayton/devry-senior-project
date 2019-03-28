@@ -16,10 +16,9 @@ locals.data = {
 
 view.on('init', function(next){
 var q = keystone.list('Product').model.findOne({
-   key:  locals.filters.product
+    key: locals.filters.product
     })
-    
-    
+
     q.exec(function(err, result){
         locals.data.product = result;
         next(err);
@@ -28,6 +27,6 @@ var q = keystone.list('Product').model.findOne({
 });
 
 
-
-    view.render('product');
+	// Render the view
+	view.render('purchase');
 };

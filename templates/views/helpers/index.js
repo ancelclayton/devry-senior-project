@@ -201,6 +201,11 @@ module.exports = function () {
 		return ('/products/' + productSlug);
 	};
 
+	// Direct url link to a specific product purchase
+	_helpers.purchaseUrl = function (purchaseSlug, options) {
+		return ('/purchase/' + purchaseSlug);
+	};
+
 	// might be a ghost helper
 	// used for pagination urls on blog
 	_helpers.pageUrl = function (pageNumber, options) {

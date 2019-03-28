@@ -6,11 +6,12 @@ exports = module.exports = function(req, res) {
 
     // set locals
     locals.section = 'products';
+    
 
     // load products
     view.query('products', keystone.list('Product').model.find());
 
-
+    
     // render view
     view.render('products');
 }
