@@ -1,9 +1,9 @@
 {{!< default}}
 <div class="container">
-	<div class="jumbotron">
+	<div>
 		<h1>{{product.name}}</h1>
 		<img src={{product.image.secure_url}} alt={{product.name}} />
 		<h2>{{{product.description}}}</h2>
-    <a href="/purchase/{{product.slug}}" class="btn btn-primary" >Purchase</a>
+    <button onClick="addToCart({{ product }})" class="btn btn-primary" >Purchase</button>
 	</div>
 </div>

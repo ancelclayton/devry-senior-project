@@ -22,28 +22,32 @@ var keystone = require('keystone');
 var middleware = require('./middleware');
 var importRoutes = keystone.importer(__dirname);
 
+
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
 
 // Import Route Controllers
 var routes = {
-	views: importRoutes('./views'),
+  views: importRoutes('./views'),
+  apis: importRoutes('./api'), 
 };
 
 // Setup Route Bindings
 exports = module.exports = function (app) {
 	// Views
-	app.get('/', routes.views.index);
+  app.get('/', routes.views.index);
+  app.get('/about', routes.views.about);
 	app.get('/product/:slug', routes.views.product);
   app.get('/purchase/:slug', routes.views.purchase );
-  
-  app.post('/login', routes.views.login)
-  app.post('/register', routes.views.register)
+  app.get('/privacy-policy', routes.views.privacy_policy);
 
-	app.all('/contact', routes.views.contact);
+  app.all('/contact', routes.views.contact);
 
-	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
-	// app.get('/protected', middleware.requireUser, routes.views.protected);
+  app.all('/login', routes.apis.login);
+  app.all('/logout', routes.apis.logout);
+  app.post('/register', routes.apis.register);
 
+	// NOTE: To protect a route so that only admins can see it, use the requireAuth middleware:
+	app.get('/cart', middleware.requireAuth, routes.views.cart);
 };

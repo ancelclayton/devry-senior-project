@@ -18,7 +18,7 @@ exports = module.exports = function (req, res) {
 				publish: true
 			})
 			.exec(function (err, results) {
-				locals.product = results;		
+        locals.product = results;		        
 				next(err);
 			});
 	});
