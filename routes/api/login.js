@@ -15,19 +15,16 @@ exports = module.exports = function (req, res) {
       });
     }
     
-    keystone.session.signin({ email: customer.email, password: req.body.login_password, isCustomer: true }, req, res, function(customer) {
-      res.locals.name = customer.name;
-      console.log(customer.name.first);
-      res.redirect('/')
-    }, function(err) {
-      
-      // TODO Flash messages on locals
-      return res.json({
-        success: true,
-        session: false,
-        message: (err && err.message ? err.message : false) || 'Sorry, there was an issue signing you in, please try again.'
-      });
-      
+    keystone.session.signin({ email: customer.email, password: req.body.login_password, isCustomer: true }, req, res, 
+      function(customer) {
+        res.locals.name = customer.name;
+        console.log(customer.name.first);
+        res.redirect('/')
+      }, 
+      function(err) {
+        // TODO Flash messages on locals
+        // Redirect
+        res.redirect('/')   
     });
     
   });

@@ -86,16 +86,16 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="/login" method="POST">
+      <form id="userLogin" action="/login" method="POST">
       	<input type="hidden" name="action" value="login">
         <div class="modal-body">
           <div class="form-group">
             <label for="login_email">Email address</label>
-            <input type="email" class="form-control" id="login_email" name="login_email" aria-describedby="emailHelp" placeholder="Enter email">
+            <input required data-parsley-type="email" type="email" class="form-control" id="login_email" name="login_email" aria-describedby="emailHelp" placeholder="Enter email">
           </div>
           <div class="form-group">
             <label for="login_password">Password</label>
-            <input type="password" class="form-control" id="login_password" name="login_password" placeholder="Password">
+            <input required type="password" class="form-control" id="login_password" name="login_password" placeholder="Password">
           </div>
         </div>
         <div class="modal-footer">
@@ -117,15 +117,23 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="/register" method="POST">
+      <form id="userRegister" action="/register" method="POST">
         <div class="modal-body">
           <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input required type="firstName" class="form-control" id="firstName" name="firstName" aria-describedby="firstNameHelp" placeholder="Enter first Name">
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input required type="lastName" class="form-control" id="lastName" name="lastName" aria-describedby="lastNameHelp" placeholder="Enter Last Name">
+          </div>
+          <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+            <input required data-parsley-type="email" type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            <input required type="password" class="form-control" id="password" name="password" placeholder="Password">
           </div>
         </div>
         <div class="modal-footer">
@@ -178,7 +186,13 @@
 	--}}
 	<script src="/js/bootstrap/bootstrap-3.3.5.min.js"></script> {{{isAdminEditorJS user}}}
 
+  <script src="/js/parsely.min.js"></script>
   <script src="/js/wsc.js"></script>
+
+  <script>
+    $('#userLogin').parsley();
+    $('#userRegister').parsley();
+  </script>
 </body>
 
 </html>

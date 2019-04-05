@@ -5837,3 +5837,7 @@ button.close {
 
 .img-product {
   width: 100%; }
+
+.parsley-required,
+.parsley-type {
+  color: red; }
