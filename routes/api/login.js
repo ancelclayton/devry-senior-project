@@ -8,11 +8,9 @@ exports = module.exports = function (req, res) {
     
     // TODO Flash messages on locals
     if (err || !customer) {
-      return res.json({
-        success: false,
-        session: false,
-        message: (err && err.message ? err.message : false) || 'Sorry, there was an issue signing you in, please try again.'
-      });
+       // TODO Flash messages on locals
+      // Redirect
+      res.redirect('/')   
     }
     
     keystone.session.signin({ email: customer.email, password: req.body.login_password, isCustomer: true }, req, res, 
