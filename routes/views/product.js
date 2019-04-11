@@ -8,15 +8,15 @@ exports = module.exports = function (req, res) {
 	// locals.section is used to set the currently selected
 	// item in the header navigation.
 	locals.title = 'WSC | ' + req.params.slug;
-	locals.section = 'New Section';
-	console.log(req.params.slug);
+	locals.section = req.params.slug;
 	
 	// Load featured products
 	view.on('init', next => {
 		Product.model.findOne({
 				slug: req.params.slug,
 				publish: true
-			})
+      })
+      .populate('categories')
 			.exec(function (err, results) {
         locals.product = results;		        
 				next(err);

@@ -38,16 +38,19 @@ exports = module.exports = function (app) {
 	// Views
   app.get('/', routes.views.index);
   app.get('/about', routes.views.about);
+	app.get('/products', routes.views.products);
 	app.get('/product/:slug', routes.views.product);
-  app.get('/purchase/:slug', routes.views.purchase );
+  app.get('/checkout/:slug', routes.views.checkout );
   app.get('/privacy-policy', routes.views.privacy_policy);
 
   app.all('/contact', routes.views.contact);
 
+  // API'S
   app.all('/login', routes.apis.login);
   app.all('/logout', routes.apis.logout);
   app.post('/register', routes.apis.register);
+  app.post('/cart', middleware.requireAuth, routes.apis.cart);
 
 	// NOTE: To protect a route so that only admins can see it, use the requireAuth middleware:
-	app.get('/cart', middleware.requireAuth, routes.views.cart);
+  app.get('/cart', middleware.requireAuth, routes.views.cart);
 };

@@ -9,7 +9,6 @@ exports = module.exports = function (req, res) {
 	// item in the header navigation.
 	locals.title = 'WSC | ' + req.params.slug;
 	locals.section = 'Purchase';
-	console.log(req.params.slug);
 	
 	// Load featured products
 	view.on('init', next => {
@@ -24,5 +23,5 @@ exports = module.exports = function (req, res) {
   });
   
 	// Render the view
-	view.render('purchase');
+	view.render('checkout');
 };

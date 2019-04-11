@@ -1,9 +1,21 @@
 {{!< default}}
 <div class="container">
-	<div>
+	<div id="product">
+    <input type="hidden" id="user" name="user" value="{{ user }}" />
+    <input type="hidden" id="product_id" name="product_id" value="{{ product._id }}" />
+    <input type="hidden" id="product_name" name="product_name" value="{{ product.name }}" />
 		<h1>{{product.name}}</h1>
 		<img src={{product.image.secure_url}} alt={{product.name}} />
 		<h2>{{{product.description}}}</h2>
-    <button onClick="addToCart({{ product }})" class="btn btn-primary" >Purchase</button>
+    <hr/>
+    <p id="qty"><strong>Quantity in stock: </strong>{{product.quantity}}</p>
+    <p id="price"><strong>Price: </strong> {{product.price}}</p>
+    {{#if user}}
+      {{#if user.isCustomer}}
+        <hr/>
+        <button onClick="addToCart()" class="btn btn-primary" >Add to Cart</button>
+      {{/if}}
+    {{/if}}
+    <p id="message"></p>
 	</div>
 </div>
