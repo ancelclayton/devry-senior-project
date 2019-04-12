@@ -22,6 +22,7 @@ Enquiry.add({
 		{ value: 'other', label: 'Something else...' },
 		
 	] },
+	product: { type: String },
 	message: { type: Types.Markdown, required: true },
 	createdAt: { type: Date, default: Date.now },
 });

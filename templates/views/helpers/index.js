@@ -196,6 +196,10 @@ module.exports = function () {
 		return ('/blog/post/' + postSlug);
 	};
 
+	/*_helpers.addToCart = function (product, options) {
+		return (alert('Does not work'));
+	};*/
+
 	// Direct url link to a specific product
 	_helpers.productUrl = function (productSlug, options) {
 		return ('/products/' + productSlug);
@@ -204,6 +208,15 @@ module.exports = function () {
 	// Direct url link to a specific product purchase
 	_helpers.purchaseUrl = function (purchaseSlug, options) {
 		return ('/purchase/' + purchaseSlug);
+	};
+
+	_helpers.contactUrl = function (contactSlug, options) {
+		return ('/contact/' + contactSlug);
+	};
+
+	//something is wrong with this helper
+	_helpers.cartUrl = function (cartSlug, options) {
+			return ('/cart/' + cartSlug);
 	};
 
 	// might be a ghost helper

@@ -45,6 +45,14 @@ exports.flashMessages = function (req, res, next) {
 	next();
 };
 
+/*
+exports.changeInv = function (req, res, next) {
+	var qtyWherehouse = req.params.product.quantity
+	var qtyCart = req.body.id;
+	var newQtyWherehouse = qtyWherehouse - qtyCart;	
+}
+*/
+
 
 /**
 	Prevents people from accessing protected pages when they're not signed in

@@ -11,26 +11,6 @@ exports = module.exports = function (req, res) {
 	locals.title = 'About';
 	locals.section = 'about';
 
-	// Filtering
-	locals.filters = {
-		post: req.params.post,
-	};
-	locals.data = {
-		products: [],
-	};
-
-	// Load featured products
-	view.on('init', function (next) {
-		Products.model.find({
-				publish: true,
-				featureOnHomepage: true
-			})
-			.limit(12)
-			.exec(function (err, results) {
-				locals.data.products = results;				
-				next(err);
-			});
-	});
 
 	// Render the view
 	view.render('about');

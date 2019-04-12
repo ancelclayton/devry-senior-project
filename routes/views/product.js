@@ -1,9 +1,11 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
+var routes = keystone.import('routes');
 
 exports = module.exports = function (req, res) {
 var view = new keystone.View(req, res);
 var locals = res.locals;
+
 
 // set locals
 locals.section = 'product';
@@ -16,7 +18,8 @@ locals.data = {
 
 view.on('init', function(next){
 var q = keystone.list('Product').model.findOne({
-   key:  locals.filters.product
+   key:  locals.filters.product,
+  // quantity: locals.filters.product,
     })
     
     
@@ -27,6 +30,7 @@ var q = keystone.list('Product').model.findOne({
 
 });
 
+console.log(locals.section);
 
 
     view.render('product');

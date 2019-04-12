@@ -21,27 +21,64 @@
 var keystone = require('keystone');
 var middleware = require('./middleware');
 var importRoutes = keystone.importer(__dirname);
+//var importPublic = keystone.importer("./public");
 
 // Common Middleware
+//keystone.pre('routes', middleware.initErrorHandlers);
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
+
+// Handle 404 errors
+/*keystone.set('404', function(req, res, next) {
+	res.notfound();
+  });
+  
+  // Handle other errors
+  keystone.set('500', function(err, req, res, next) {
+	var title, message;
+	if (err instanceof Error) {
+	  message = err.message;
+	  err = err.stack;
+	}
+	res.err(err, title, message);
+  });*/
 
 // Import Route Controllers
 var routes = {
 	views: importRoutes('./views'),
+	api: importRoutes('./api'),
 };
+
+
+
 
 // Setup Route Bindings
 exports = module.exports = function (app) {
+	//app.locals.cart = "wtf"
 	// Views
 	app.get('/', routes.views.index);
 	app.all('/contact', routes.views.contact);
 	app.get('/products', routes.views.products);
 	app.get('/products/:product', routes.views.product);
-	app.get('/purchase/:product', routes.views.purchase);
+	app.all('/addToCart/:product', routes.views.addToCart);
 	app.all('/about', routes.views.about);
+	app.post('/post/:id', routes.views.post);
+//	app.all('/public/uploads/files/fileAPITest', routes.api.fileupload)
+	//app.use(keystone.static(public.))
 
+
+	/// API's
+  //File Upload Router
+  //app.post('/api/signin', routes.api.signin);
+  //app.post('/api/signout', signout);
+  //app.get('./api/cart', routes.api.cart);
+  /*app.get('/api/fileupload/list', keystone.middleware.api, routes.api.fileupload.list);
+  app.get('/api/fileupload/:id', keystone.middleware.api, routes.api.fileupload.get);
+  app.all('/api/fileupload/:id/update', keystone.middleware.api, routes.api.fileupload.update);
+  app.all('/api/fileupload/create', keystone.middleware.api, routes.api.fileupload.create);
+  app.get('/api/fileupload/:id/remove', keystone.middleware.api, routes.api.fileupload.remove);
+  *///
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
-	// app.get('/protected', middleware.requireUser, routes.views.protected);
+ // app.get('/protected', middleware.requireUser, routes.views.protected);
 
 };

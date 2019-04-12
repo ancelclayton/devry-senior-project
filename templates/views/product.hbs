@@ -1,3 +1,4 @@
+
 <div class="container">
     <div class="row">
         <div class='col-md-12 col-lg-12'>
@@ -20,7 +21,13 @@
                     </ul>
                     <div class="well">
                         {{{data.product.description}}}
-                        <a href="{{purchaseUrl data.product.key}}" class="btn btn-primary">Purchase</a>
+                        
+                        {{!--<a href={{contactUrl data.product.key}} class="btn btn-primary">Contact Us</a>--}}
+                        <a href="/addToCart/{{data.product.key}}" class="btn btn-primary">Add To Cart</a>
+                        <form action="/post/{{data.product.key}}" method="post">
+                        <input type="text" name="id">
+                        <button class="btn btn-primary" type="submit">Purchase</button>
+                    </form>
                     </div>
                 </div>
             </div>
