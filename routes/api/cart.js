@@ -1,16 +1,4 @@
 var keystone = require('keystone');
-<<<<<<< HEAD
-
-exports = module.exports = function (req, res) {
-    //console.log(req.params.slug);
-
-/*function addToCart(product) {
-    console.log(product);
-    next();
-};*/
-
-};
-=======
 var Cart = keystone.list('Cart');
 var serialize = require('serialize-javascript');
 
@@ -36,4 +24,3 @@ exports.post = module.exports = function (req, res) {
   // });
   res.send('yep')
 }
->>>>>>> 913dd083ffa0da762061396fb2ed239a091b1830

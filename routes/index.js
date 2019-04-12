@@ -46,13 +46,8 @@ keystone.pre('render', middleware.flashMessages);
 
 // Import Route Controllers
 var routes = {
-<<<<<<< HEAD
-	views: importRoutes('./views'),
-	api: importRoutes('./api'),
-=======
   views: importRoutes('./views'),
   apis: importRoutes('./api'), 
->>>>>>> 913dd083ffa0da762061396fb2ed239a091b1830
 };
 
 
@@ -62,7 +57,6 @@ var routes = {
 exports = module.exports = function (app) {
 	//app.locals.cart = "wtf"
 	// Views
-<<<<<<< HEAD
 	app.get('/', routes.views.index);
 	app.all('/contact', routes.views.contact);
 	app.get('/products', routes.views.products);
@@ -87,22 +81,6 @@ exports = module.exports = function (app) {
   *///
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
  // app.get('/protected', middleware.requireUser, routes.views.protected);
-=======
-  app.get('/', routes.views.index);
-  app.get('/about', routes.views.about);
-	app.get('/products', routes.views.products);
-	app.get('/product/:slug', routes.views.product);
-  app.get('/checkout/:slug', routes.views.checkout );
-  app.get('/privacy-policy', routes.views.privacy_policy);
-
-  app.all('/contact', routes.views.contact);
-
-  // API'S
-  app.all('/login', routes.apis.login);
-  app.all('/logout', routes.apis.logout);
-  app.post('/register', routes.apis.register);
-  app.post('/cart', middleware.requireAuth, routes.apis.cart);
->>>>>>> 913dd083ffa0da762061396fb2ed239a091b1830
 
 	// NOTE: To protect a route so that only admins can see it, use the requireAuth middleware:
   app.get('/cart', middleware.requireAuth, routes.views.cart);

@@ -1,22 +1,5 @@
 var keystone = require('keystone');
 
-<<<<<<< HEAD
-exports = module.exports = function(req, res) {
-    var view = new keystone.View(req, res);
-    var locals = res.locals;
-
-    // set locals
-    locals.section = 'products';
-    
-
-    // load products
-    view.query('products', keystone.list('Product').model.find());
-
-    
-    // render view
-    view.render('products');
-}
-=======
 exports = module.exports = function (req, res) {
 
 	var Products = keystone.list('Product');
@@ -51,4 +34,3 @@ exports = module.exports = function (req, res) {
 	// Render the view
 	view.render('products');
 };
->>>>>>> 913dd083ffa0da762061396fb2ed239a091b1830
