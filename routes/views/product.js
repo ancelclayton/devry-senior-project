@@ -1,4 +1,5 @@
 var keystone = require('keystone');
+<<<<<<< HEAD
 var Types = keystone.Field.Types;
 var routes = keystone.import('routes');
 
@@ -35,3 +36,31 @@ console.log(locals.section);
 
     view.render('product');
 };
+=======
+
+exports = module.exports = function (req, res) {
+	var Product = keystone.list('Product');
+	var view = new keystone.View(req, res);
+	var locals = res.locals;	
+
+	// locals.section is used to set the currently selected
+	// item in the header navigation.
+	locals.title = 'WSC | ' + req.params.slug;
+	locals.section = req.params.slug;
+	
+	// Load featured products
+	view.on('init', next => {
+		Product.model.findOne({
+				slug: req.params.slug,
+				publish: true
+      })
+      .populate('categories')
+			.exec(function (err, results) {
+        locals.product = results;		        
+				next(err);
+			});
+	});
+	// Render the view
+	view.render('product');
+};
+>>>>>>> 913dd083ffa0da762061396fb2ed239a091b1830

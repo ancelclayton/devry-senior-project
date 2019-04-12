@@ -20,6 +20,14 @@
 <body>
 	<div id="header">
 		<div class="container">
+
+      <!-- Login Confirm -->
+      {{#if user}}
+        <div class="container" style="margin-bottom: 5px">
+          Welcome back <strong>{{user.name.first}}</strong>
+        </div>
+      {{/if}}
+
 			<div role="navigation" class="navbar navbar-default">
 				<div class="container-fluid">
 					<div class="navbar-header">
@@ -41,8 +49,17 @@
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							{{#if user}}
+                {{#if user.isAdmin}}
+                  <li>
+                    <a href="/keystone">Admin UI</a>
+                  </li>
+                {{else}}
+                  <li>
+                    <a href="/cart">Shopping Cart</a>
+                  </li>
+                {{/if}}
 							<li>
-								<a href="/signout">Sign Out</a>
+								<a href="/logout">Logout</a>
 							</li>
 							{{else}}
 							<li>
@@ -69,6 +86,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+<<<<<<< HEAD
       <form action="/login" type="post">
         <div class="modal-body">
           <div class="form-group">
@@ -78,6 +96,18 @@
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+=======
+      <form id="userLogin" action="/login" method="POST">
+      	<input type="hidden" name="action" value="login">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="login_email">Email address</label>
+            <input required data-parsley-type="email" type="email" class="form-control" id="login_email" name="login_email" aria-describedby="emailHelp" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label for="login_password">Password</label>
+            <input required type="password" class="form-control" id="login_password" name="login_password" placeholder="Password">
+>>>>>>> 913dd083ffa0da762061396fb2ed239a091b1830
           </div>
         </div>
         <div class="modal-footer">
@@ -99,6 +129,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+<<<<<<< HEAD
       <form action="/register" type="post">
         <div class="modal-body">
           <div class="form-group">
@@ -108,6 +139,25 @@
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+=======
+      <form id="userRegister" action="/register" method="POST">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input required type="firstName" class="form-control" id="firstName" name="firstName" aria-describedby="firstNameHelp" placeholder="Enter first Name">
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input required type="lastName" class="form-control" id="lastName" name="lastName" aria-describedby="lastNameHelp" placeholder="Enter Last Name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input required data-parsley-type="email" type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input required type="password" class="form-control" id="password" name="password" placeholder="Password">
+>>>>>>> 913dd083ffa0da762061396fb2ed239a091b1830
           </div>
         </div>
         <div class="modal-footer">
@@ -118,7 +168,10 @@
     </div>
   </div>
 </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 913dd083ffa0da762061396fb2ed239a091b1830
 	<div id="body">
 		<!--
 				Flash messages allow you to display once-off status messages to users, e.g. form
@@ -145,12 +198,14 @@
 			{{/if}}
 		</div>
 		{{/if}}
-		<!-- The content block should contain the body of your template's content-->
-		{{{body}}}
-	</div>
+		
+    <!-- The content block should contain the body of your template's content-->
+    {{{body}}}
+	
+  </div>
 	<div class="container">
 		<div id="footer">
-			<p>Williams Specialty Company &copy; 2019</p>
+			<p>Williams Specialty Company &copy; 2019 | <a href="/privacy-policy">Privacy Policy</a></p>
 		</div>
 	</div>
 	{{!-- //- jQuery 1.11.3 is included by default, and required by both Bootstrap //- and the KeystoneJS Content Editor. If
@@ -158,6 +213,14 @@
 	<script src="/js/jquery/jquery-1.11.3.min.js"></script> {{!-- //- Customise which Bootstrap javascript files are served by including //- them specifically here, instead of bootstrap-3.3.5.min.js
 	--}}
 	<script src="/js/bootstrap/bootstrap-3.3.5.min.js"></script> {{{isAdminEditorJS user}}}
+
+  <script src="/js/parsely.min.js"></script>
+  <script src="/js/wsc.js"></script>
+
+  <script>
+    $('#userLogin').parsley();
+    $('#userRegister').parsley();
+  </script>
 </body>
 
 </html>

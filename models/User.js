@@ -13,6 +13,7 @@ User.add({
 	password: { type: Types.Password, initial: true, required: true },
 }, 'Permissions', {
 	isAdmin: { type: Boolean, label: 'Can access Keystone', index: true },
+	isCustomer: { type: Boolean, label: 'Can access Customer Front-End', index: true },
 });
 
 // Provide access to Keystone
@@ -24,5 +25,5 @@ User.schema.virtual('canAccessKeystone').get(function () {
 /**
  * Registration
  */
-User.defaultColumns = 'name, email, isAdmin';
+User.defaultColumns = 'name, email, isAdmin, isCustomer';
 User.register();

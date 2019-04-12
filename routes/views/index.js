@@ -26,9 +26,9 @@ exports = module.exports = function (req, res) {
 				publish: true,
 				featureOnHomepage: true
 			})
-			.limit(12)
+			.limit(20)
 			.exec(function (err, results) {
-				locals.data.products = results;				
+				locals.data.products = results;		
 				next(err);
 			});
 	});

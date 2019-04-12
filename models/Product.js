@@ -8,12 +8,12 @@ var Types = keystone.Field.Types;
 
 var Product = new keystone.List('Product', {
 	track: true,
-	autokey: { from: 'name', path: 'key', unique: true },
+	autokey: { from: 'name', path: 'slug', unique: true },
 });
 
 Product.add({
 	name: { type: String, required: true },
-	categories: { type: Types.Relationship, ref: 'ProductCategory', initial: true }
+	categories: { type: Types.Relationship, ref: 'ProductCategory', initial: true, many: false }
 },'Content',{
 	image: { type: Types.CloudinaryImage },
 	description: { type: Types.Html, wysiwyg: true, height: 150 },
