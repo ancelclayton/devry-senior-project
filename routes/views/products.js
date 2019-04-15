@@ -11,10 +11,6 @@ exports = module.exports = function (req, res) {
 	locals.title = 'Products';
 	locals.section = 'products';
 
-	// Filtering
-	locals.filters = {
-		post: req.params.post,
-	};
 	locals.data = {
 		products: [],
 	};

@@ -1,4 +1,27 @@
 {{!< default}}
 <div class="container">
-	<h1>Cart</h1>
+	<h1>Shopping Cart</h1>
+  <hr/>
+	<div class="row">
+    <div class="col-sm-8">
+		{{#each data.products}}
+				<div class="cart-card">
+					<img class="cart-card-img-right img-product" src="{{image.secure_url}}" alt="Card image cap">
+					<div class="cart-card-body">
+						<h5 class="cart-card-title"><strong>{{name}}</strong></h5>
+						<p class="card-text">{{{description}}}</p>
+            <p><strong>Quantity: </strong>{{quantity}}</p>
+            <p><strong>Price: </strong> ${{price}}</p>
+					</div>
+				</div>
+        <hr/>
+		{{/each}}
+    </div>
+    <div class="col-sm-4">
+      <h3>Total Price</h3>
+      <p>{{totalPrice}}</p>
+    </div>
+	</div>
+
+  
 </div>

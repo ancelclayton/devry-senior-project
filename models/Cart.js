@@ -12,12 +12,12 @@ var Cart = new keystone.List('Cart', {
 });
 
 Cart.add({
-	customer: { type: Types.Email, initial: true, required: true, index: true },
-	cartItems: { type: Types.Text }
+	customerId: { type: Types.Text, initial: true, noedit: true, required: true, index: true },
+	productId: { type: Types.Text, initial: true, noedit: true, required: true, index: true }
 });
 
 /**
  * Registration
  */
-Cart.defaultColumns = 'name, email, isAdmin';
+Cart.defaultColumns = 'customerId, cartItem';
 Cart.register();

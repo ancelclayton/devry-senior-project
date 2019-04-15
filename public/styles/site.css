@@ -5841,3 +5841,20 @@ button.close {
 .parsley-required,
 .parsley-type {
   color: red; }
+
+.cart-card {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px;
+  height: 150px; }
+
+.cart-card-img-right {
+  width: 150px; }
+
+.cart-card-body {
+  padding-left: 35px; }
+
+#message {
+  margin-top: 20px;
+  font-weight: bold;
+  color: green; }

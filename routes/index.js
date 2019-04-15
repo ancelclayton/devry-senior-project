@@ -35,6 +35,7 @@ var routes = {
 
 // Setup Route Bindings
 exports = module.exports = function (app) {
+  
 	// Views
   app.get('/', routes.views.index);
   app.get('/about', routes.views.about);
@@ -43,14 +44,16 @@ exports = module.exports = function (app) {
   app.get('/checkout/:slug', routes.views.checkout );
   app.get('/privacy-policy', routes.views.privacy_policy);
 
+  // Contact Form
   app.all('/contact', routes.views.contact);
 
   // API'S
   app.all('/login', routes.apis.login);
   app.all('/logout', routes.apis.logout);
   app.post('/register', routes.apis.register);
-  app.post('/cart', middleware.requireAuth, routes.apis.cart);
+  app.post('/add_product', middleware.requireAuth, routes.apis.add_product);
 
+  // PROTECTED ROUTES
 	// NOTE: To protect a route so that only admins can see it, use the requireAuth middleware:
   app.get('/cart', middleware.requireAuth, routes.views.cart);
 };
