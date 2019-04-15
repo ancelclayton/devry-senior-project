@@ -16,10 +16,14 @@ function addToCart(){
   // Send a POST request
   axios({
     method: 'post',
-    url: '/cart',
+    url: '/add_product',
     data: {
       user_id,
       product_id
     }
   });
+}
+
+function removeProduct() {
+  alert('Product removed')
 }

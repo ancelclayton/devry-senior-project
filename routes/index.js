@@ -41,7 +41,6 @@ exports = module.exports = function (app) {
   app.get('/about', routes.views.about);
 	app.get('/products', routes.views.products);
 	app.get('/product/:slug', routes.views.product);
-  app.get('/checkout/:slug', routes.views.checkout );
   app.get('/privacy-policy', routes.views.privacy_policy);
 
   // Contact Form
@@ -56,4 +55,5 @@ exports = module.exports = function (app) {
   // PROTECTED ROUTES
 	// NOTE: To protect a route so that only admins can see it, use the requireAuth middleware:
   app.get('/cart', middleware.requireAuth, routes.views.cart);
+  app.post('/checkout', middleware.requireAuth, routes.views.checkout );
 };

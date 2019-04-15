@@ -13,13 +13,19 @@
             <p><strong>Quantity: </strong>{{quantity}}</p>
             <p><strong>Price: </strong> ${{price}}</p>
 					</div>
+          <button onClick="removeProduct()" class="removeProduct btn btn-danger" >Remove Product</button>
 				</div>
         <hr/>
 		{{/each}}
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-4 cart-checkout">
       <h3>Total Price</h3>
-      <p>{{totalPrice}}</p>
+      <p>${{totalPrice}}</p>
+      <form id="checkout" action="/checkout" method="POST">
+        <input type="hidden" id="user_id" name="user_id" value="{{ user._id }}" />
+        <input type="hidden" id="total_price" name="total_price" value="{{ totalPrice }}" />
+        <button type="submit" class="btn btn-success">Checkout</button>
+      </form>
     </div>
 	</div>
 

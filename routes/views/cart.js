@@ -13,9 +13,9 @@ exports.get = module.exports = function (req, res) {
   locals.label = 'Shopping Cart';
 
   locals.data = {
-    totalPrice: 0,
 		products: [],
   };
+  locals.totalPrice = 0;
   
   // Load products from user id
 	view.on('init', next => {
@@ -38,7 +38,8 @@ exports.get = module.exports = function (req, res) {
       })
       .exec(function (err, results) {    
         if(err) { console.log(err); }  
-        var object = {};        
+        var object = {};   
+        var price = 0;     
         // Count qty to objects
         productsArray.forEach(function (item) {
           if(!object[item])
@@ -50,13 +51,17 @@ exports.get = module.exports = function (req, res) {
             results.forEach(product => {              
               if(product._id == prop){
                 product.quantity = object[prop];
+                product.price =(product.price * object[prop]).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); 
+                price += product.price * object[prop];
               } else {
                 product.quantity = 1;
+                price += product.price 
               }
             });
           }
         }
-
+        
+        locals.totalPrice = (price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); 
         locals.data.products = results;		
 				next(err);
       });

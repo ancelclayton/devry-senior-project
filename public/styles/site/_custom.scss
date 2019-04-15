@@ -9,8 +9,9 @@
 
 .cart-card{
   display: flex;
-  justify-content: flex-start;
-  padding: 10px;
+  justify-content: space-around;
+  padding: 20px;
+  margin: 25px;
   height: 150px;
 }
 .cart-card-img-right { 
@@ -19,7 +20,15 @@
 .cart-card-body {
   padding-left: 35px;
 }
-
+.removeProduct {
+  align-self: flex-end;
+}
+.cart-checkout {
+  background: #e7e7e7;
+  border: 1px solid #e7e7e7;
+  border-radius: 2px;
+  padding-bottom: 25px;
+}
 #message {
   margin-top: 20px;
   font-weight: bold;

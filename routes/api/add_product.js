@@ -1,10 +1,7 @@
 var keystone = require('keystone');
 var Cart = keystone.list('Cart');
-var serialize = require('serialize-javascript');
-
 
 exports.post = module.exports = function (req, res) {
-
   var data = {
     customerId: req.body.user_id,
     productId: req.body.product_id
