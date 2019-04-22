@@ -40,18 +40,27 @@ exports = module.exports = function (req, res) {
           .exec(function (err, product) {  
             cart.push(product);
             product.quantity = product.quantity - 1;
-            product.save();            
+            product.save();  
+        }).then(() => {
+          // Delete cart Item
+          item.remove();
         });        
-        // Delete cart Item
-        item.remove();
       });
     });
     
-    // create an order
-
     // send order recipt to locals & email
+    var orderData = {
+      customerId: data.user_id,
+      price: locals.total,
+      paid: true
+    }
+    var newOrder = new Order.model(orderData);
+    newOrder.save();
+
     next();
   });
+
+
   
 	// Render the view
 	view.render('thankyou');

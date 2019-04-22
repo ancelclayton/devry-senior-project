@@ -12,11 +12,10 @@ var Order = new keystone.List('Order', {
 });
 
 Order.add({
-	customer: { type: Types.Relationship, ref: 'Customer', initial: true, many: false },
-	product: { type: Types.Relationship, ref: 'Product', initial: true, many: false },
-	quantity: { type: Number },
-	paid: { type: Boolean, default: false },
+	customerId:  { type: Types.Text, noedit: true },
+	price: { type: Types.Text, noedit: true },
+  paid: { type: Types.Boolean, default: true, noedit: true }
 });
 
-Order.defaultColumns = 'type, customer, product, quantity, paid';
+Order.defaultColumns = 'id, customerId, price, paid';
 Order.register();
