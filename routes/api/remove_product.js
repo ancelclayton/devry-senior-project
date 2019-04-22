@@ -9,7 +9,6 @@ exports.post = module.exports = function (req, res) {
   }
   
   Cart.model.remove(data).limit(1).exec(function (err, item) {
-		
 		if (err) return res.apiError('database error', err);
     if (!item) return res.apiError('not found');
   }); 

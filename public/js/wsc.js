@@ -37,7 +37,6 @@ function removeProduct(id) {
       product_id: id
     }
   }).then(() => {
-    var element = document.getElementById(id);
-    element.parentNode.removeChild(element);
+    location.reload();
   });
 }
