@@ -56,6 +56,7 @@ exports = module.exports = function (app) {
   // PROTECTED ROUTES
 	// NOTE: To protect a route so that only admins can see it, use the requireAuth middleware:
   app.get('/cart', middleware.requireAuth, routes.views.cart);
+  app.get('/orders', middleware.requireAuth, routes.views.orders);
   app.post('/checkout', middleware.requireAuth, routes.views.checkout );
   app.post('/complete_payment', middleware.requireAuth, routes.views.complete_payment );
 };

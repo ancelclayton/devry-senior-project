@@ -14,8 +14,9 @@ var Order = new keystone.List('Order', {
 Order.add({
 	customerId:  { type: Types.Text, noedit: true },
 	price: { type: Types.Text, noedit: true },
+  deliveryDate: { type: Types.Date },
   paid: { type: Types.Boolean, default: true, noedit: true }
 });
 
-Order.defaultColumns = 'id, customerId, price, paid';
+Order.defaultColumns = 'id, customerId, deliveryDate, price, paid';
 Order.register();

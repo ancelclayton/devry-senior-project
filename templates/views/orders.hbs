@@ -1,0 +1,17 @@
+{{!< default}}
+<div class="container">
+	<h1>Orders</h1>
+  <hr/>
+	<div class="row">
+		{{#each orders}}
+			<div id={{ _id }} class="cart-card">
+        <div class="cart-card-body">
+          <h5 class="cart-card-title"><strong>Payment Confirmation</strong><h5>
+          <p><strong>Id: </strong>: {{ _id }}</p>
+          <p><strong>Estimated Delivery Date: </strong>{{ deliveryDate }}</p>
+          <p><strong>Total: </strong> ${{ price }}</p>
+        </div>
+      </div>
+		{{/each}}
+	</div>
+</div>

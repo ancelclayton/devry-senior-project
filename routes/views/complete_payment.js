@@ -1,7 +1,7 @@
 var keystone = require('keystone');
 var moment = require('moment');
 
-var new_date = moment().add(10, 'days').calendar(); 
+var new_date = moment().add(10, 'days'); 
 
 exports = module.exports = function (req, res) {
   var Cart = keystone.list('Cart');
@@ -15,7 +15,7 @@ exports = module.exports = function (req, res) {
 	// item in the header navigation.
 	locals.title = 'WSC | ' + req.params.slug;
 	locals.section = 'Thank You';
-  locals.deliveryDate = new_date;
+  locals.deliveryDate = new_date.calendar();
 
   view.on('post', { action: 'complete_payment' }, function (next) {
 
@@ -52,6 +52,7 @@ exports = module.exports = function (req, res) {
     var orderData = {
       customerId: data.user_id,
       price: locals.total,
+      deliveryDate: new_date,
       paid: true
     }
     var newOrder = new Order.model(orderData);
