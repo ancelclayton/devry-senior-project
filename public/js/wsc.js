@@ -1,5 +1,6 @@
 var count = 1;
 
+// Adds a product to the shopping cart
 function addToCart(){
   var user_id = document.getElementById("user_id").value;
   var product_id = document.getElementById("product_id").value;
@@ -24,7 +25,7 @@ function addToCart(){
   });
 }
 
-
+// Removes product from shopping cart and div from page
 function removeProduct(id) {  
   var user_id = document.getElementById("user_id").value;
   // Send a POST request
@@ -35,5 +36,8 @@ function removeProduct(id) {
       user_id,
       product_id: id
     }
+  }).then(() => {
+    var element = document.getElementById(id);
+    element.parentNode.removeChild(element);
   });
 }

@@ -6,7 +6,7 @@
     <div class="col-sm-8">
       <input type="hidden" id="user_id" name="user_id" value="{{ user._id }}" />
       {{#each products }}
-          <div class="cart-card">
+          <div id={{ _id }} class="cart-card">
             <img class="cart-card-img-right img-product" src="{{image}}" alt="Card image cap">
             <div class="cart-card-body">
               <h5 class="cart-card-title"><strong>{{title}}</strong></h5>

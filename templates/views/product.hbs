@@ -9,7 +9,7 @@
 		<h2>{{{product.description}}}</h2>
     <hr/>
     <p id="qty"><strong>Quantity in stock: </strong>{{product.quantity}}</p>
-    <p id="price"><strong>Price: </strong> {{product.price}}</p>
+    <p id="price"><strong>Price: </strong> ${{product.formatedPrice}}</p>
     {{#if user}}
       {{#if user.isCustomer}}
         <hr/>
