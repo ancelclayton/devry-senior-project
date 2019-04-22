@@ -4,9 +4,11 @@ var moment = require('moment');
 var new_date = moment().add(10, 'days').calendar(); 
 
 exports = module.exports = function (req, res) {
-	var Product = keystone.list('Product');
   var Cart = keystone.list('Cart');
-	var view = new keystone.View(req, res);
+  var Order = keystone.list('Order');
+	var Product = keystone.list('Product');
+	
+  var view = new keystone.View(req, res);
   var locals = res.locals;	  
 
 	// locals.section is used to set the currently selected
@@ -28,13 +30,20 @@ exports = module.exports = function (req, res) {
     .exec(function (err, cartItems) {  
       if(err) console.log(err);
 
+      var cart = [];
       // loop through cart items
-      cartItems.forEach(item => {
-        
+      cartItems.forEach(item => {        
         //Reduce product qty
-
+        Product.model.findOne({ 
+            _id: item.productId 
+          })
+          .exec(function (err, product) {  
+            cart.push(product);
+            product.quantity = product.quantity - 1;
+            product.save();            
+        });        
         // Delete cart Item
-        //item.remove();
+        item.remove();
       });
     });
     
