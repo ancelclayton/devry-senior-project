@@ -24,6 +24,16 @@ function addToCart(){
   });
 }
 
-function removeProduct() {
-  alert('Product removed')
+
+function removeProduct(id) {  
+  var user_id = document.getElementById("user_id").value;
+  // Send a POST request
+  axios({
+    method: 'post',
+    url: '/remove_product',
+    data: {
+      user_id,
+      product_id: id
+    }
+  });
 }

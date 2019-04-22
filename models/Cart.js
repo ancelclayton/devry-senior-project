@@ -19,5 +19,5 @@ Cart.add({
 /**
  * Registration
  */
-Cart.defaultColumns = 'customerId, cartItem';
+Cart.defaultColumns = 'id, customerId, productId';
 Cart.register();

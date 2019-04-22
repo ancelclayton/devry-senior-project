@@ -51,6 +51,7 @@ exports = module.exports = function (app) {
   app.all('/logout', routes.apis.logout);
   app.post('/register', routes.apis.register);
   app.post('/add_product', middleware.requireAuth, routes.apis.add_product);
+  app.post('/remove_product', middleware.requireAuth, routes.apis.remove_product);
 
   // PROTECTED ROUTES
 	// NOTE: To protect a route so that only admins can see it, use the requireAuth middleware:

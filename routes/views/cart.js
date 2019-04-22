@@ -1,5 +1,17 @@
 var keystone = require('keystone');
 
+function formatPrice(price) {
+  return (price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+}
+
+function getTax(price) {
+  return 0.09 * price;
+}
+
+function getTotal(price) {
+  return price + getTax(price);
+}
+
 exports.get = module.exports = function (req, res) {
 
   var view = new keystone.View(req, res);
@@ -25,7 +37,8 @@ exports.get = module.exports = function (req, res) {
 			.exec(function (err, results) {
         results.forEach(product => {
           productsArray.push(product.productId); 
-        });          
+        });   
+        locals.products = results;
         next(err);
       });
   });
@@ -38,31 +51,24 @@ exports.get = module.exports = function (req, res) {
       })
       .exec(function (err, results) {    
         if(err) { console.log(err); }  
-        var object = {};   
         var price = 0;     
-        // Count qty to objects
-        productsArray.forEach(function (item) {
-          if(!object[item])
-              object[item] = 0;
-            object[item] += 1;
-        })
-        for (var prop in object) {
-          if(object[prop] >= 2) {            
-            results.forEach(product => {              
-              if(product._id == prop){
-                product.quantity = object[prop];
-                product.price =(product.price * object[prop]).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); 
-                price += product.price * object[prop];
-              } else {
-                product.quantity = 1;
-                price += product.price 
-              }
-            });
-          }
-        }
-        
-        locals.totalPrice = (price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); 
-        locals.data.products = results;		
+        // Matching up products to cartItems & adding props
+        results.forEach(product => {                 
+          locals.products.forEach(orderProduct => {                           
+            if(orderProduct.productId == product._id){
+              orderProduct.title = product.name
+              orderProduct.price = formatPrice(product.price)
+              orderProduct.qty = 1;
+              orderProduct.description = product.description
+              orderProduct.image = product.image.secure_url;
+              // totalPrice
+              price += product.price;
+            }
+          });
+        });
+        locals.tax = formatPrice(getTax(price));
+        locals.price = formatPrice(price); 
+        locals.totalPrice = formatPrice(getTotal(price));
 				next(err);
       });
   });

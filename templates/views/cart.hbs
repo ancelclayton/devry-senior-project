@@ -4,23 +4,28 @@
   <hr/>
 	<div class="row">
     <div class="col-sm-8">
-		{{#each data.products}}
-				<div class="cart-card">
-					<img class="cart-card-img-right img-product" src="{{image.secure_url}}" alt="Card image cap">
-					<div class="cart-card-body">
-						<h5 class="cart-card-title"><strong>{{name}}</strong></h5>
-						<p class="card-text">{{{description}}}</p>
-            <p><strong>Quantity: </strong>{{quantity}}</p>
-            <p><strong>Price: </strong> ${{price}}</p>
-					</div>
-          <button onClick="removeProduct()" class="removeProduct btn btn-danger" >Remove Product</button>
-				</div>
-        <hr/>
-		{{/each}}
+      <input type="hidden" id="user_id" name="user_id" value="{{ user._id }}" />
+      {{#each products }}
+          <div class="cart-card">
+            <img class="cart-card-img-right img-product" src="{{image}}" alt="Card image cap">
+            <div class="cart-card-body">
+              <h5 class="cart-card-title"><strong>{{title}}</strong></h5>
+              <p class="card-text">{{{description}}}</p>
+              <p><strong>Quantity: </strong>{{qty}}</p>
+              <p><strong>Price: </strong> ${{price}}</p>
+            </div>
+            <button value="{{ _id }}" onClick="removeProduct(value)" class="removeProduct btn btn-danger" >Remove Product</button>
+          </div>
+          <hr/>
+      {{/each}}
     </div>
     <div class="col-sm-4 cart-checkout">
       <h3>Total Price</h3>
-      <p>${{totalPrice}}</p>
+      <hr/>
+      <p><strong>Subtotal</strong>: <span class="money pull-right">${{price}}</span></p>
+      <p><strong>Tax</strong>: <span class="money pull-right">${{tax}}</span></p>
+      <hr/>
+      <p><strong>Total</strong>: <span class="money pull-right">${{totalPrice}}</span></p>
       <form id="checkout" action="/checkout" method="POST">
         <input type="hidden" id="user_id" name="user_id" value="{{ user._id }}" />
         <input type="hidden" id="total_price" name="total_price" value="{{ totalPrice }}" />
@@ -29,5 +34,5 @@
     </div>
 	</div>
 
-  
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </div>
